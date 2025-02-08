@@ -6,9 +6,20 @@ let people = [
 	{ name: 'Steve', birthDate: new Date(2003,4,24) }
 ];
 
+function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
 let simplifier = function(person) {
 	// Your code here
-	return person.name;
+	return "Hello, my name is "+person.name+" and I am "+getAge(person.birthDate)+" years old";
 };
 
 console.log(people.map(simplifier));
